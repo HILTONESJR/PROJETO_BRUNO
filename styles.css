@@ -1,25 +1,66 @@
 /* =========================
    RESET E BASE
 ========================= */
+:root {
+    --color-background: #e5dfd4;
+    --color-primary: #d8c8a0;
+    --color-secondary: #6d5432;
+    --color-accent: #f7ff8a;
+    --color-text: #222;
+    --color-border: #e5dfd4;
+    --color-highlight: #e86a1b;
+    --color-dark: #7a7a5c;
+    --color-light: #b2ad99;
+}
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #e5dfd4;
-    color: #222;
+    background: var(--color-background);
+    color: var(--color-text);
+}
+/* =========================
+   CONTAINER NAV
+========================= */
+.container_nav {
+    background: var(--color-primary);
+    min-height: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav_btn a {
+    background-color: var(--color-text);
+    padding: 20px 60px;
+    text-decoration: none;
+    color: var(--color-accent);
+    border: var(--color-accent) 2px solid;
+    font-size: 1.5rem;
+    border-radius: 20px;
+}
+.nav_btn a:active {
+    position: relative;
+    bottom: -1px;
 }
 
 /* =========================
    CONTAINER ABOUT
 ========================= */
 .container_about {
-    background: #d8c8a0;
+    background: var(--color-primary);
     min-height: 340px;
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    border-top: 2px solid #e5dfd4;
-    border-bottom: 2px solid #e5dfd4;
+    border-top: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
     width: 100vw;
     margin: 0;
     padding: 0;
@@ -38,14 +79,14 @@ body {
 .container_about h1 {
     font-family: 'Georgia', serif;
     font-size: 2.8rem;
-    color: #6d5432;
+    color: var(--color-secondary);
     font-weight: 400;
     margin-bottom: 18px;
     letter-spacing: 1px;
 }
 .container_about p {
     font-family: 'Georgia', serif;
-    color: #6d5432;
+    color: var(--color-secondary);
     font-size: 1.25rem;
     line-height: 1.5;
     margin-bottom: 18px;
@@ -53,8 +94,8 @@ body {
 }
 .container_about a, .container_about button {
     display: inline-block;
-    background: #f7ff8a;
-    color: #222 !important;
+    background: var(--color-accent);
+    color: var(--color-text) !important;
     border-radius: 4px;
     padding: 10px 28px;
     text-align: center;
@@ -70,6 +111,20 @@ body {
     background: #e5dfd4;
 }
 @media (max-width: 900px) {
+    .container_nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+    .container_nav img {
+        margin-bottom: 16px;
+    }
+    .nav_btn a {
+        width: auto;
+        margin-top: 16px;
+        margin-bottom: 24px;
+    }
     .container_about {
         flex-direction: column;
     }
@@ -84,6 +139,8 @@ body {
 }
 @media (max-width: 480px) {
     .container_about > div { padding: 8px 1vw; }
+    .container_about h1 { font-size: 1.8rem; }
+    .container_about p { font-size: 1rem; }
 }
 
 /* =========================
@@ -107,14 +164,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     padding: 48px 4vw;
     min-width: 320px;
     box-sizing: border-box;
 }
 .priori_text p {
     font-family: 'Georgia', serif;
-    color: #222;
+    color: var(--color-text);
     font-size: 2.1rem;
     line-height: 1.2;
     text-align: center;
@@ -144,7 +201,7 @@ body {
     flex: 1 1 45%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 48px 4vw 48px 0;
     min-width: 320px;
     box-sizing: border-box;
@@ -161,7 +218,10 @@ body {
     margin: 0;
 }
 @media (max-width: 900px) {
-    .container_priori { flex-direction: column; }
+    .container_priori { 
+        flex-direction: column; 
+        overflow: hidden; 
+    }
     .priori_text, .priori_imagem {
         flex: 1 1 100%;
         padding: 32px 4vw;
@@ -170,10 +230,22 @@ body {
         justify-content: center;
     }
     .priori_text p { font-size: 1.3rem; }
-    .priori_imagem img { border-radius: 18px; max-width: 90vw; }
+    .priori_imagem {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .priori_imagem img { 
+        border-radius: 18px; 
+        max-width: 90vw; 
+        height: auto; 
+        object-fit: contain; 
+        margin-bottom: 30px;
+    }
 }
 @media (max-width: 480px) {
     .container_priori { padding: 8px 1vw; }
+    .priori_text p { font-size: 1rem; }
+    .priori_imagem img { max-width: 85vw; }
 }
 
 /* =========================
@@ -252,6 +324,9 @@ body {
 }
 @media (max-width: 480px) {
     .container_top { padding: 8px 1vw; }
+    .top_text h1 { font-size: 2rem; }
+    .top_text p { font-size: 1rem; }
+    .top_imagem img { max-width: 85vw; }
 }
 
 /* =========================
@@ -321,6 +396,9 @@ body {
 }
 @media (max-width: 480px) {
     .container_espec { padding: 8px 1vw; }
+    .espec_card img { width: 40px; height: 40px; }
+    .espec_card h1 { font-size: 1rem; }
+    .espec_card p { font-size: 0.9rem; }
 }
 
 /* =========================
@@ -385,6 +463,8 @@ body {
 }
 @media (max-width: 480px) {
     .container_works { padding: 8px 1vw; }
+    .works_title h1 { font-size: 1.2rem; }
+    .works_cards p { font-size: 1rem; }
 }
 
 /* =========================
@@ -500,6 +580,9 @@ body {
 }
 @media (max-width: 480px) {
     .container_icons { padding: 8px 1vw; }
+    .card_img img { width: 60px; height: 60px; }
+    .card_text h1 { font-size: 1.2rem; }
+    .card_text p { font-size: 1rem; }
 }
 
 /* =========================
@@ -523,7 +606,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     padding: 48px 4vw;
     min-width: 320px;
     box-sizing: border-box;
@@ -572,24 +655,17 @@ body {
 }
 @media (max-width: 480px) {
     .container_inf { padding: 8px 1vw; }
+    .inf_text p { font-size: 1.1rem; }
+    .inf_imagem img { max-width: 85vw; }
 }
 
 /* =========================
    CONTAINER CONTATO
 ========================= */
 .container_contato {
-    background: #fff;
-    min-height: 420px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    border-top: 2px solid #d8c8a0;
-    border-bottom: 2px solid #d8c8a0;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    justify-content: center;
+    flex-direction: row;
+
 }
 .contato_text {
     width: 100%;
@@ -604,11 +680,19 @@ body {
     flex: 1 1 50%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+    justify-content: center;
     padding: 48px 2vw 24px 2vw;
     min-width: 320px;
     box-sizing: border-box;
+}
+.contato_esq p {
+    max-width: 450px;
+}
+.esq_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .contato_esq .contato_intro {
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -618,23 +702,23 @@ body {
     margin-bottom: 18px;
     text-align: left;
     width: 100%;
-    max-width: 520px;
+    max-width: 450px;
 }
-.contato_esq .contato_titulo {
+.contato_esq .esq_text {
     font-family: 'Georgia', serif;
-    color: #e86a1b;
-    font-size: 2.5rem;
+    color: #202020;
+    font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 18px;
     text-align: center;
     width: 100%;
 }
 .contato_formulario {
-    background: #e5dfd4;
+    background: #b1aca4;
     border-radius: 0;
     padding: 24px 18px 18px 18px;
     width: 100%;
-    max-width: 380px;
+    max-width: 450px;
     margin: 0 auto 18px auto;
     box-sizing: border-box;
     display: flex;
@@ -643,7 +727,7 @@ body {
 }
 .contato_formulario label {
     font-weight: 600;
-    color: #6d6a5e;
+    color: #1f1e1d;
     margin-bottom: 4px;
     display: block;
     font-size: 1rem;
@@ -703,7 +787,7 @@ body {
     width: 32px;
     height: 32px;
     margin-right: 4px;
-    border-radius: 50%;
+    border-radius: 20%;
     background: #7a7a5c;
     padding: 4px;
 }
@@ -747,13 +831,16 @@ body {
 }
 @media (max-width: 480px) {
     .container_contato { padding: 8px 1vw; }
+    .contato_esq .contato_intro { font-size: 1.1rem; }
+    .contato_esq .esq_text { font-size: 1.2rem; }
+    .contato_logo img { max-width: 80vw; }
 }
 
 /* =========================
    FOOTER
 ========================= */
 footer {
-    background: #b2ad99;
+    background: var(--color-light);
     color: #fff;
     text-align: center;
     padding: 24px 0 12px 0;
@@ -769,7 +856,7 @@ footer {
 }
 footer p, footer P {
     margin: 0 0 4px 0;
-    color: #fff;
+    color: #2c2929;
 }
 @media (max-width: 900px) {
     footer { padding: 12px 0 6px 0; }
